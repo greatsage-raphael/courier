@@ -1,19 +1,23 @@
-      import { CourierClient } from "@trycourier/courier";
-      
-      const courier = CourierClient(
-        { authorizationToken: "pk_prod_QK1M6F3K7Z4QRFQ4VFBHRQEWV61D"});
-      
-      const { requestId } = await courier.send({
-        message: {
-          content: {
-            title: "Welcome to Courier!",
-            body: "Want to hear a joke? {{joke}}"
-          },
-          data: {
-            joke: "Why was the JavaScript developer sad? Because they didn't Node how to Express themselves"
-          },
-          to: {
-            email: "bizzicole87@gmail.com"
-          }
-        }
-      });
+// Dependencies to install:
+// $ npm install node-fetch --save
+
+import fetch from 'node-fetch';
+
+const options = {
+  method: 'POST',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    Authorization: 'Bearer pk_test_5FN3Z3VT194PNTQWZ4WF0MB3FZ5M'
+  },
+  body: JSON.stringify({
+    "message": {
+      "template": "NOTIFICATION_TEMPLATE"
+    }
+  })
+};
+
+fetch('https://api.courier.com/send', options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
