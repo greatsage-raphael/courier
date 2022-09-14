@@ -6,7 +6,7 @@
       const { requestId } = await courier.send({
         message: {
           content: {
-            title: "Welcome to Courier!",
+            title: "Welcome to Courier! Mate ",
             body: "Want to hear a joke? {{joke}}"
           },
           data: {
